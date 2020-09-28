@@ -32,6 +32,7 @@ class UserSignupAPIView(CreateAPIView):
                 "status":obj.status,
             }
             return Response(response_data, status.HTTP_201_CREATED)
+            # return Response(request.data)
         else:
             return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
 

@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from blog.users.models import User
+from users.models import User
 
 # Create your models here.
 class blog_app(models.Model):
