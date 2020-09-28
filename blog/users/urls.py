@@ -1,6 +1,8 @@
 from django.conf.urls import url
-from .views import HelloWorld
-# Create your views here.
-urlpatterns = [
-    url('HelloWorld',HelloWorld.as_view()),
+from .views import (UserSignupAPIView, UserListAPI, UserLoginAPI)
+
+urlpatterns =[
+    url('signup',UserSignupAPIView.as_view()),
+    url('userlist',UserListAPI.as_view()),
+    url('login',UserLoginAPI.as_view())
 ]
