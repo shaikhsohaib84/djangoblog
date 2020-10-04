@@ -50,7 +50,7 @@ class UserLoginAPI(GenericAPIView):
     serializer_class = UserLoginSerializer
 
     def post(self, request, *args, **kwargs):
-        print("inside post",request.data)
+        # print("inside post",request.data)
         serializer = self.get_serializer(data=request.data)
 
         if serializer.is_valid():
