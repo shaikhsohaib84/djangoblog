@@ -22,7 +22,7 @@ class CreateBlogAPI(CreateAPIView):
 
 class BlogListAPI(ListAPIView):
     serializer_class = CreateBlogSerializer
-    # queryset = ''
+    queryset = ''
     def post(self, request, *args, **kwargs):
 
         data = list()
