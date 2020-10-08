@@ -71,3 +71,29 @@ class UpdateBlogStatusAPI(UpdateAPIView):
             self.partial_update(serializer)
 
         return Response(serializer.data, status.HTTP_200_OK)
+    
+class GetBlogDetailsAPI(ListAPIView):
+    serializer_class = CreateBlogSerializer
+    queryset = ''
+    def get(self, request, *args, **kwargs):
+        data = list()
+        blog_id = self.kwargs['pk']
+        blog_data = blog_app.objects.filter(id = blog_id)
+        serializer = self.get_serializer(blog_data, many=True)
+        print("serializer data",serializer.data)
+        for blog in serializer.data:
+            get_user = User.objects.filter(id=blog['user_id']).values("first_name", "last_name", "email", "description", "contact")
+            data.append({
+                "id":blog['id'],
+                "title":blog['content'],
+                "status":blog['status'],
+                "user_id":blog['user_id'],
+                "first_name":get_user[0]['first_name'],
+                "last_name": get_user[0]['last_name'],
+                "email": get_user[0]['email'],
+                "description": get_user[0]['description'],
+                "contact": get_user[0]['contact'],
+                "created_at": blog['created_at'],
+                "updated_at": blog['updated_at']
+            })
+            return Response(data, status.HTTP_200_OK)
