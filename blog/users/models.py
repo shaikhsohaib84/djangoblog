@@ -10,7 +10,7 @@ class User(AbstractUser):
     email = models.EmailField('email_address',unique=True)
     contact = models.TextField(max_length=10,null=True,blank=False)
     description = models.TextField(max_length=60,null=True,blank=False)
-    linkedin_url = models.URLField(null=True,blank=False)
+    linkedin_url = models.URLField(null=True,blank=True)
     status = models.CharField(max_length=10, null=False, blank=False, choices=Status_choice,default='ACTIVE')
 
     USERNAME_FIELD = 'email'
