@@ -1,7 +1,7 @@
 from .serializers import CreateBlogSerializer,UpdateBlogStatusSerializer
 from  rest_framework.generics import (CreateAPIView,
                                       ListAPIView,
-                                      UpdateAPIView)
+                                      UpdateAPIView,)
 from rest_framework.response import Response
 from rest_framework import status
 from users.models import User
@@ -63,7 +63,7 @@ class UpdateBlogStatusAPI(UpdateAPIView):
 
     def patch(self, request, *args, **kwargs):
         instance = self.get_object()
-        instance.status = request.data["status"]
+        instance.status = request.data['status']
 
         serializer = self.get_serializer(instance, data=request.data)
 
